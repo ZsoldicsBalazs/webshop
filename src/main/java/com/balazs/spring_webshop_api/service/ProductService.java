@@ -46,4 +46,8 @@ public class ProductService {
     public void delete(int id) {
         productRepository.deleteById(id);
     }
+
+    public List<Product> search(String search) {
+        return productRepository.findByNameContaining(search);
+    }
 }

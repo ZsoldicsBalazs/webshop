@@ -66,6 +66,16 @@ public class ProductController {
         productService.delete(id);
         return new ResponseEntity<>("Deleted",HttpStatus.OK);
     }
+
+    @GetMapping("/products/search")
+    public ResponseEntity<List<Product>> searchForProduct(
+            @RequestParam(required = false) String keyword){
+        List<Product> products = productService.search(keyword);
+        if(products.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(products,HttpStatus.OK);
+    }
 }
 
 
